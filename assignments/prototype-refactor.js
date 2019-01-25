@@ -65,7 +65,7 @@ class GameObject{
 //   };
    
   /* REFACTOR: Humanoid */
-  class humanoid extends CharacterStats {
+  class Humanoid extends CharacterStats {
       constructor(human) {
           super (human);
           this.team = human.team;
@@ -76,8 +76,6 @@ class GameObject{
         return `${this.name} offers a greeting in ${this.language}`;
       }
   }
-
-
 
   /* Objects */
   
