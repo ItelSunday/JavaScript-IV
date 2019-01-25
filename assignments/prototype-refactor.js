@@ -25,39 +25,61 @@ class GameObject{
         return `${this.name} removed from the game`;
     }
 }
-  
 
   /*=== CharacterStats ===*/
+//   function CharacterStats(character){
+//     GameObject.call(this,character);
+//     this.healthPoints = character.healthPoints;
+//     this.name = character.name;
+//   }
+//   CharacterStats.prototype = Object.create(GameObject.prototype);
   
-  function CharacterStats(character){
-    GameObject.call(this,character);
-    this.healthPoints = character.healthPoints;
-    this.name = character.name;
-  }
-  CharacterStats.prototype = Object.create(GameObject.prototype);
-  
-  CharacterStats.prototype.takeDamage = function(){
-  return `${this.name} took damage`;
-  };
+//   CharacterStats.prototype.takeDamage = function(){
+//   return `${this.name} took damage`;
+//   };
   
     /* REFACTOR: CharacterStats */
+  class CharacterStats extends GameObject {
+      constructor(character) {
+          super (character);
+          this.healthPoints = character.healthPoints;
+          this.name = character.name;
+      }
+      takeDamage(){
+        return `${this.name} took damage`; 
+      }
+  }
+
 
   /* === Humanoid ===*/
-  function Humanoid(human){
-    CharacterStats.call(this, human); //.apply(this, [human]); refers to arrays
-    this.team = human.team;
-    this.weapons = human.weapons;
-    this.language = human.language;
-  }
-  Humanoid.prototype = Object.create(CharacterStats.prototype);
+//   function Humanoid(human){
+//     CharacterStats.call(this, human); //.apply(this, [human]); refers to arrays
+//     this.team = human.team;
+//     this.weapons = human.weapons;
+//     this.language = human.language;
+//   }
+//   Humanoid.prototype = Object.create(CharacterStats.prototype);
   
-  Humanoid.prototype.greet = function() {
-  return `${this.name} offers a greeting in ${this.language}`;
-  };
+//   Humanoid.prototype.greet = function() {
+//   return `${this.name} offers a greeting in ${this.language}`;
+//   };
    
   /* REFACTOR: Humanoid */
-  
-  /* Onjects */
+  class humanoid extends CharacterStats {
+      constructor(human) {
+          super (human);
+          this.team = human.team;
+            this.weapons = human.weapons;
+            this.language = human.language;
+      }
+      greet() {
+        return `${this.name} offers a greeting in ${this.language}`;
+      }
+  }
+
+
+
+  /* Objects */
   
     const mage = new Humanoid({
       createdAt: new Date(),
